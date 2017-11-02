@@ -1,5 +1,5 @@
 import requests
-from b4 import BeautifulSoup
+from bs4 import BeautifulSoup
 
 
 def trade_spider(max_pages):
@@ -7,7 +7,7 @@ def trade_spider(max_pages):
   while page <= max_pages:
     url = 'https://buckysroom.org/trade/search.php?page=' + str(page)
     source_code = requests.get(url)
-    plain_text = source_code.text
+    plain_text = source_code.text #Alternate is "source_code.content"
     soup = BeautifulSoup(plain_text)
     for link in soup.findAll('a', {'class': 'item-name'}):
         href = "https://buckysroom.org" + link.get('href')
